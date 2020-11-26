@@ -2,6 +2,7 @@
 import newspaper
 import requests
 import pandas as pd 
+import json
 
 from bs4 import BeautifulSoup
 
@@ -69,18 +70,24 @@ def scrape_hn_rss():
 def article_processor(url):
     article = newspaper.Article(url)
     article.build()
-    return [article.summary, article.keywords]
+    return [article.summary, article.keywords, article.top_image]
 
-item_list = []
-for item_id in get_hn_stories():
-    json = get_hn_item(item_id)
-    summary, keywords = article_processor(json['url'])
-    json['summary'] = summary
-    json['keywords'] = keywords
-    item_list.append(json)
 
-df = pd.DataFrame(item_list, columns=['by', 'descendants', 'id', 'kids', 'score', 'time', 'title', 'type', 'url', 'summary', 'keywords'])
-print(df.head())
+def get_hn_stories_json():
+    item_list = []
+    for item_id in get_hn_stories():
+        print("Processing : " + str(item_id))
+        json = get_hn_item(item_id)
+        summary, keywords, image = article_processor(json['url'])
+        json['summary'] = summary
+        json['keywords'] = keywords
+        json['image'] = image
+        item_list.append(json)
+    return item_list
+
+if __name__ == '__main__':
+    df = pd.DataFrame(get_hn_stories_json(), columns=['by', 'descendants', 'id', 'kids', 'score', 'time', 'title', 'type', 'url', 'summary', 'keywords', 'image'])
+    print(df.head())
 
 
 

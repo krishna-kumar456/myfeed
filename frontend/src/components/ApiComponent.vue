@@ -1,6 +1,11 @@
 <template>
   <div>
-    <p>Response Message : {{ state.info }}</p>
+    <!-- <p>Response Message : {{ state.info }}</p> -->
+    <!-- <li v-for="info in state.info" :key="info.id">
+        {{ info.id }} - {{ info.by }}
+    </li> -->
+    <card v-for="info in state.info" :info="info" :key="info.id" />
+    
   </div>
 </template>
 
@@ -10,6 +15,7 @@ import {
   defineComponent,
 } from "@vue/composition-api";
 import axios from "axios";
+import Card from "./Card.vue";
 
 function loadData() {
   const state = reactive({
@@ -18,9 +24,9 @@ function loadData() {
     errored: false
   });
   axios
-    .get("http://localhost:8081/keywords")
+    .get("http://localhost:8081/best-hn")
     .then(response => {
-      state.info = response.data.keywords;
+      state.info = response.data.response
       console.log(state.info)
     })
     .catch(() => {
@@ -30,9 +36,10 @@ function loadData() {
   return { state };
 }
 export default defineComponent({
+  components: { Card },
   name: "ApiComponent",
   props: {
-   
+
   },
   setup(props) {
     return { ...loadData() };

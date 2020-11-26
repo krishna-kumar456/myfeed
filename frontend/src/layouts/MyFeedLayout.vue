@@ -188,14 +188,14 @@ export default {
         { icon: fasFlask, text: 'Science' },
         { icon: 'fitness_center', text: 'Health ' }
       ],
-    //   links3: [
-    //     { icon: '', text: 'Language & region' },
-    //     { icon: '', text: 'Settings' },
-    //     { icon: 'open_in_new', text: 'Get the Android app' },
-    //     { icon: 'open_in_new', text: 'Get the iOS app' },
-    //     { icon: '', text: 'Send feedback' },
-    //     { icon: 'open_in_new', text: 'Help' }
-    //   ]
+      links3: [
+        // { icon: '', text: 'Language & region' },
+        // { icon: '', text: 'Settings' },
+        // { icon: 'open_in_new', text: 'Get the Android app' },
+        // { icon: 'open_in_new', text: 'Get the iOS app' },
+        // { icon: '', text: 'Send feedback' },
+        // { icon: 'open_in_new', text: 'Help' }
+      ]
     }
   },
   methods: {

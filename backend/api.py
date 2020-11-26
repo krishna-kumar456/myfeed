@@ -1,7 +1,8 @@
-from fastapi import FastAPI 
-from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import main
+
+from fastapi import FastAPI 
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -24,9 +25,9 @@ app.add_middleware(
 def read_root():
     return {"message": "Hello World!"}
 
-@app.get("/keywords")
+@app.get("/best-hn")
 def read_root():
-    return {"keywords": main.keywords}
+    return {"response": main.get_hn_stories_json()}
 
 if __name__ == "__main__":
     uvicorn.run("api:app", host="0.0.0.0", port=8081)
