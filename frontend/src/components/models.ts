@@ -9,6 +9,8 @@ export interface Card {
   title: string;
   summary: string;
   imageurl: string;
+  url: string;
+  descendants: string;
 }
 export interface Meta {
   totalCount: number;

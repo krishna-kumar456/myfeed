@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <!-- <p>Response Message : {{ state.info }}</p> -->
-    <!-- <li v-for="info in state.info" :key="info.id">
-        {{ info.id }} - {{ info.by }}
-    </li> -->
+  <div class="q-pa-md">
+
     <card v-for="info in state.info" :info="info" :key="info.id" />
     
   </div>

@@ -1,11 +1,10 @@
 <template>
-  <div class="card">
-     <q-card class="my-card" flat bordered>
+  <div class="card full-width row no-wrap justify-center items-center content-center q-pa-sm">
+     <q-card class="my-card col-md-5" flat bordered>
       <q-card-section horizontal>
         <q-card-section class="q-pt-xs">
-          <div class="text-overline">{{ info.id }}</div>
           <div class="text-h5 q-mt-sm q-mb-xs">{{ info.title }}</div>
-          <div class="text-caption text-grey">
+          <div class="text-grey q-pt-xs">
             {{ info.summary }}
           </div>
         </q-card-section>
@@ -20,15 +19,15 @@
 
       <q-separator />
 
-      <!-- <q-card-actions>
-        <q-btn flat round icon="event" />
-        <q-btn flat>
-          7:30PM
+      <q-card-actions>
+        <q-btn flat color="primary" type="a" v-bind:href="info.url" target="_blank">
+          Read Content
         </q-btn>
-        <q-btn flat color="primary">
-          Reserve
+        <q-btn flat color="primary" type="a" v-bind:href="info.commentsurl" target="_blank" label="HN Comments">
+          
+          <q-badge color="red" floating>{{ info.descendants }} </q-badge>
         </q-btn>
-      </q-card-actions> -->
+      </q-card-actions>
     </q-card>
   </div>
 </template>

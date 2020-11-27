@@ -78,10 +78,19 @@ def get_hn_stories_json():
     for item_id in get_hn_stories():
         print("Processing : " + str(item_id))
         json = get_hn_item(item_id)
-        summary, keywords, image = article_processor(json['url'])
-        json['summary'] = summary
-        json['keywords'] = keywords
-        json['image'] = image
+        if 'url' in json:
+            summary, keywords, image = article_processor(json['url'])
+            json['summary'] = summary
+            json['keywords'] = keywords
+            json['image'] = image
+        else:
+            if 'text' in json:
+                json['summary'] = json['text']
+            else:
+                json['summary'] = ''
+            json['keywords'] = ''
+            json['image'] = 'https://jayclouse.com/wp-content/uploads/2019/06/hacker_news-1000x525-1.jpg'
+        json['commentsurl'] = 'https://news.ycombinator.com/item?id=' + str(item_id)
         item_list.append(json)
     return item_list
 
